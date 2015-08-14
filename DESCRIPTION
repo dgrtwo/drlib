@@ -1,0 +1,12 @@
+Package: drlib
+Type: Package
+Title: Personal utilities
+Version: 0.1
+Date: 2015-08-12
+Authors@R: c(person("David", "Robinson", email = "drobinson@stackoverflow.com", role = c("aut", "cre")))
+Description: Personal R functions used by David Robinson.
+License: MIT + file LICENSE
+LazyData: TRUE
+Maintainer: David Robinson <drobinson@stackoverflow.com>
+VignetteBuilder: knitr
+Imports: dplyr
