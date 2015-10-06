@@ -9,4 +9,7 @@ License: MIT + file LICENSE
 LazyData: TRUE
 Maintainer: David Robinson <drobinson@stackoverflow.com>
 VignetteBuilder: knitr
-Imports: dplyr
+Imports: dplyr,
+  ggplot2,
+  Matrix
+Suggests: testthat
