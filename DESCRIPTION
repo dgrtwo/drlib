@@ -1,9 +1,9 @@
 Package: drlib
 Type: Package
-Title: Personal utilities
+Title: Personal R package of David Robinson
 Version: 0.1
 Date: 2015-08-12
-Authors@R: c(person("David", "Robinson", email = "drobinson@stackoverflow.com", role = c("aut", "cre")))
+Authors@R: c(person("David", "Robinson", email = "admiral.david@gmail.com", role = c("aut", "cre")))
 Description: Personal R functions used by David Robinson.
 License: MIT + file LICENSE
 LazyData: TRUE
@@ -11,5 +11,7 @@ Maintainer: David Robinson <drobinson@stackoverflow.com>
 VignetteBuilder: knitr
 Imports: dplyr,
   ggplot2,
-  Matrix
-Suggests: testthat
+  Matrix,
+  stringr
+Suggests: testthat,
+  knitr

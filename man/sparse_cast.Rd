@@ -30,9 +30,8 @@ dat <- data.frame(a = c("row1", "row1", "row2", "row2", "row2"),
   b = c("col1", "col2", "col1", "col3", "col4"),
   val = 2)
 
-spread_cast(dat, a, b)
+sparse_cast(dat, a, b)
 
-
-spread_cast(dat, a, b, val)
+sparse_cast(dat, a, b, val)
 }
 

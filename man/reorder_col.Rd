@@ -12,6 +12,8 @@ reorder_col(.data, col, value, ...)
 \item{value}{Value to reorder by}
 
 \item{...}{Extra arguments passed on to reorder, such as \code{function}}
+
+\item{data}{A tbl}
 }
 \description{
 Reorder a column of a tbl based on another

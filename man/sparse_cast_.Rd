@@ -9,11 +9,11 @@ sparse_cast_(data, row_col, column_col, value_col = NULL)
 \arguments{
 \item{data}{A tbl}
 
-\item{row}{Name of column to use as row names}
+\item{row_col}{String version of column to use as row names}
 
-\item{column}{Name of column to use as column names}
+\item{column_col}{String version of column to use as column names}
 
-\item{value}{Name of column to use as sparse matrix values,
+\item{value_col}{String version of column to use as sparse matrix values,
 or a numeric value to use}
 }
 \description{

@@ -16,6 +16,7 @@ relibrary <- function(package_name) {
 
 #' Reorder a column of a tbl based on another
 #'
+#' @param data A tbl
 #' @param col Column to use for reordering
 #' @param value Value to reorder by
 #' @param ... Extra arguments passed on to reorder, such as \code{function}
@@ -87,9 +88,9 @@ expand_grid <- function(..., stringsAsFactors = FALSE, group_by_all = FALSE) {
 #' Standard-evaluation version of sparse_cast
 #'
 #' @param data A tbl
-#' @param row Name of column to use as row names
-#' @param column Name of column to use as column names
-#' @param value Name of column to use as sparse matrix values,
+#' @param row_col String version of column to use as row names
+#' @param column_col String version of column to use as column names
+#' @param value_col String version of column to use as sparse matrix values,
 #' or a numeric value to use
 #'
 #' @import Matrix
@@ -135,10 +136,9 @@ sparse_cast_ <- function(data, row_col, column_col, value_col = NULL) {
 #'   b = c("col1", "col2", "col1", "col3", "col4"),
 #'   val = 2)
 #'
-#' spread_cast(dat, a, b)
+#' sparse_cast(dat, a, b)
 #'
-#'
-#' spread_cast(dat, a, b, val)
+#' sparse_cast(dat, a, b, val)
 #'
 #' @name sparse_cast
 #'
@@ -183,3 +183,31 @@ add_counts.factor <- function(x) {
   levels(x) <- paste0(levels(x), " (", tab[levels(x)], ")")
   x
 }
+
+
+#' Decode a string in base 62 into a number
+#'
+#' Note that this returns a float vector, not an integer, due to
+#' the (unfortunate) 32-bit limit of integers in R.
+#'
+#' @param s a character vector in base 62 encoding
+#'
+#' @examples
+#'
+#' strings <- c("wojWiVquxXy", "x1VMNGRqI3m")
+#'
+#' decode_base_62(strings)
+#'
+#' @export
+decode_base_62 <- function(s) {
+  base_62_chars <- stringr::str_split("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", "")[[1]]
+  nums <- 62 ^ seq_len(max(nchar(s)))
+
+  decoded <- sapply(stringr::str_split(s, ""), function(ch) {
+    indices <- rev(match(ch, base_62_chars) - 1)
+    sum(indices * head(nums, length(ch)))
+  })
+
+  decoded
+}
+
