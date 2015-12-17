@@ -7,7 +7,7 @@ Authors@R: c(person("David", "Robinson", email = "admiral.david@gmail.com", role
 Description: Personal R functions used by David Robinson.
 License: MIT + file LICENSE
 LazyData: TRUE
-Maintainer: David Robinson <drobinson@stackoverflow.com>
+Maintainer: David Robinson <admiral.david@gmail.com>
 VignetteBuilder: knitr
 Imports: dplyr,
   ggplot2,
