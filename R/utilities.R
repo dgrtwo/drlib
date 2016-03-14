@@ -211,3 +211,27 @@ decode_base_62 <- function(s) {
   decoded
 }
 
+
+#' Turn a character vector of JSON dictionaries into a data frame
+#'
+#' Sometimes (e.g. in a database column) one has a vector of individual
+#' JSON dictionaries with the same or similar keys.
+#' This is a simple utility to parse them all at
+#' once into a data frame. It's substantially more efficient than
+#' individually parsing them and then recombining them.
+#'
+#' @param j Character vector containing JSON dictionaries
+#'
+#' @examples
+#'
+#' input <- c('{"col1": 3, "col2": 10}', '{"col1": 5}',
+#'            NA, '{"col1": 50, "col2": 100}')
+#'
+#' json_vec_to_df(input)
+#'
+#' @export
+json_vec_to_df <- function(j) {
+  j[is.na(j) | j == ""] <- "null"
+  s <- stringr::str_c("[", stringr::str_c(j, collapse = ","), "]")
+  jsonlite::fromJSON(s)
+}

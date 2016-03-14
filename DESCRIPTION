@@ -12,6 +12,7 @@ VignetteBuilder: knitr
 Imports: dplyr,
   ggplot2,
   Matrix,
-  stringr
+  stringr,
+    jsonlite
 Suggests: testthat,
   knitr
