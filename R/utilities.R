@@ -211,3 +211,115 @@ decode_base_62 <- function(s) {
   decoded
 }
 
+# originally from tidyr
+col_name <- function (x, default = stop("Please supply column name", call. = FALSE))
+{
+  if (is.character(x))
+    return(x)
+  if (identical(x, quote(expr = )))
+    return(default)
+  if (is.name(x))
+    return(as.character(x))
+  if (is.null(x))
+    return(x)
+  stop("Invalid column specification", call. = FALSE)
+}
+
+#' Split a string column and then unnest on that split column
+#'
+#' @export
+split_unnest <- function(data, col, sep = "[^[:alnum:]]+") {
+  col <- col_name(substitute(col))
+  data[[col]] <- stringr::str_split(data[[col]], sep)
+
+  data <- tidyr::unnest_(data, col)
+  data <- data[data[[col]] != ""]
+  data
+}
+
+
+#' Melt multiple matrices of the same dimension into multiple columns
+#'
+#' @param ... Matrices, given as named arguments
+#' @param varnames Variable names to use in molten data.frame
+#' @param tbldf Whether to return a tbl_df instead of a data.frame
+#'
+#' @export
+melt_multiple <- function(..., varnames = NULL, tbldf = TRUE) {
+  datas <- list(...)
+  if (length(datas) == 0) {
+    stop("Must be given at least one data frame to melt")
+  }
+  if (is.null(varnames)) {
+    varnames <- dimnames(datas[[1]])
+  }
+
+  # if any are missing, replace them
+  n <- names(datas)
+  n[n == ""] <- paste0("value", seq_len(sum(n == "")))
+
+  ret <- reshape2::melt(datas[[1]], varnames = varnames, value.name = n[1])
+  for (n in names(datas)[-1]) {
+    ret[[n]] <- c(datas[[n]])
+  }
+
+  if (tbldf) {
+    ret <- dplyr::tbl_df(ret)
+  }
+
+  ret
+}
+
+
+#' Perform a correlation and melt the result into a table
+#'
+#' @param m A matrix or an object that can be coerced to one (like a
+#' sparseMatrix)
+#' @param use Passed on to \code{\link{cor}}
+#' @param method Passed on to \code{\link{cor}}
+#' @param varnames Names for variable columns, passed on to \code{reshape2::melt}
+#' @param varnames Name for value column, passed on to \code{reshape2::melt}
+#' @param threshold Optionally, a minimum threshold to include
+#' @param sort Whether to sort the results in descending correlation
+#'
+#' @export
+tidy_cor <- function(m, use = "everything", method = "pearson",
+                     varnames = c("Var1", "Var2"),
+                     value.name = "Correlation", threshold = NULL,
+                     sort = FALSE) {
+  co <- stats::cor(as.matrix(m), use = use, method = method)
+
+  ret <- reshape2::melt(co, varnames = varnames, value.name = value.name)
+  ret <- dplyr::tbl_df(ret)
+
+  # filter out self-matches
+  ret <- ret[ret[[varnames[1]]] != ret[[varnames[2]]], ]
+  if (!is.null(threshold)) {
+    ret <- ret[ret[[value.name]] >= threshold, ]
+  }
+
+  if (sort) {
+    ret <- ret[order(-ret[[value.name]]), ]
+  }
+
+  ret
+}
+
+
+#' Wrap the countrycode package to convert back and forth between country
+#' code and country name
+#'
+#' If given a vector of country codes, turn into names. If given a vector
+#' of names, turn back into country codes. This is a very simple utility
+#' since I find myself using this code too often
+#'
+#' @param x Vector of either 2-letter country code or country names
+#'
+#' @export
+convert_country <- function(x) {
+  if (all(is.na(x) | nchar(x) == 2)) {
+    countrycode::countrycode(x, "iso2c", "country.name")
+  } else {
+    countrycode::countrycode(x, "country.name", "iso2c")
+  }
+}

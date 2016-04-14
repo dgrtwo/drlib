@@ -9,9 +9,14 @@ License: MIT + file LICENSE
 LazyData: TRUE
 Maintainer: David Robinson <admiral.david@gmail.com>
 VignetteBuilder: knitr
-Imports: dplyr,
-  ggplot2,
-  Matrix,
-  stringr
-Suggests: testthat,
-  knitr
+Imports:
+    dplyr,
+    ggplot2,
+    Matrix,
+    stringr,
+    reshape2,
+    countrycode
+Suggests:
+    testthat,
+    knitr
+RoxygenNote: 5.0.1
