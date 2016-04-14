@@ -15,6 +15,7 @@ Imports:
     Matrix,
     stringr,
     reshape2,
+    jsonlite,
     countrycode
 Suggests:
     testthat,
