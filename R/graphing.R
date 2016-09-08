@@ -17,12 +17,52 @@ rotate_x_labels <- function(...) {
 #' @export
 theme_blank <- function(...) {
   ret <- theme_bw(...)
-  ret$line <- element_blank()
-  ret$rect <- element_blank()
-  ret$strip.text <- element_blank()
-  ret$axis.text <- element_blank()
-  ret$plot.title <- element_blank()
-  ret$axis.title <- element_blank()
+  ret$line <- ggplot2::element_blank()
+  ret$rect <- ggplot2::element_blank()
+  ret$strip.text <- ggplot2::element_blank()
+  ret$axis.text <- ggplot2::element_blank()
+  ret$plot.title <- ggplot2::element_blank()
+  ret$axis.title <- ggplot2::element_blank()
   ret$plot.margin <- structure(c(0, 0, -1, -1), unit = "lines", valid.unit = 3L, class = "unit")
   ret
+}
+
+
+#' Log scale for both x & y axes
+#'
+#' Transform both the x and y axis for the common case of a log-log plot
+#'
+#' @param ... Arguments passed on to the scales
+#'
+#' @export
+scale_xy_log10 <- function(...) {
+  list(ggplot2::scale_x_log10(...), ggplot2::scale_y_log10(...))
+}
+
+
+#' Percentage scales
+#'
+#' Format the labels on the x axis, y axis, or both
+#'
+#' @param ... Arguments passed on to the scales
+#'
+#' @name scale_percent
+#'
+#' @export
+scale_x_percent <- function(...) {
+  ggplot2::scale_x_continuous(..., labels = scales::percent_format())
+}
+
+
+#' @rdname scale_percent
+#' @export
+scale_y_percent <- function(...) {
+  ggplot2::scale_y_continuous(..., labels = scales::percent_format())
+}
+
+
+#' @rdname scale_percent
+#' @export
+scale_xy_percent <- function(...) {
+  list(ggplot2::scale_x_percent(...), ggplot2::scale_y_percent(...))
 }
