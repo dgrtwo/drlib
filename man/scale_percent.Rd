@@ -13,6 +13,9 @@ scale_y_percent(...)
 
 scale_xy_percent(...)
 }
+\arguments{
+\item{...}{Arguments passed on to the scales}
+}
 \description{
 Format the labels on the x axis, y axis, or both
 }

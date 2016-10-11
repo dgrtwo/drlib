@@ -325,6 +325,7 @@ convert_country <- function(x) {
   }
 }
 
+
 #' Turn a character vector of JSON dictionaries into a data frame
 #'
 #' Sometimes (e.g. in a database column) one has a vector of individual

@@ -3,6 +3,7 @@
 S3method(add_counts,character)
 S3method(add_counts,factor)
 export("%<*>%")
+export(accumulate_while)
 export(add_counts)
 export(convert_country)
 export(decode_base_62)
