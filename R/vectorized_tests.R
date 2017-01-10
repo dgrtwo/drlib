@@ -92,7 +92,7 @@ vectorized_wilcoxon_test = function(m, y, alternative="two.sided", tbl = FALSE) 
                  "less" = stats::pnorm(z),
                  "greater" = stats::pnorm(z, lower.tail=FALSE),
                  "two.sided" = 2 * pmin(stats::pnorm(z),
-                                        stats::pnorm(z, lower.tail=FALSE)))
+                                        stats::pnorm(z, lower.tail = FALSE)))
 
   if (tbl) {
     # return as a tidy table
