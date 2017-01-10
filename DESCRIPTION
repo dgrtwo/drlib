@@ -1,8 +1,8 @@
 Package: drlib
 Type: Package
 Title: Personal R package of David Robinson
-Version: 0.1
-Date: 2015-08-12
+Version: 0.1.0
+Date: 2017-01-10
 Authors@R: c(person("David", "Robinson", email = "admiral.david@gmail.com", role = c("aut", "cre")))
 Description: Personal R functions used by David Robinson.
 License: MIT + file LICENSE
@@ -16,8 +16,11 @@ Imports:
     stringr,
     reshape2,
     jsonlite,
-    countrycode
+    countrycode,
+    purrr,
+    scales
 Suggests:
+    tidyr,
     testthat,
     knitr
 RoxygenNote: 5.0.1

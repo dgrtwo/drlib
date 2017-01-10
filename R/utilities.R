@@ -16,7 +16,7 @@ relibrary <- function(package_name) {
 
 #' Reorder a column of a tbl based on another
 #'
-#' @param data A tbl
+#' @param .data A tbl
 #' @param col Column to use for reordering
 #' @param value Value to reorder by
 #' @param ... Extra arguments passed on to reorder, such as \code{function}
@@ -226,18 +226,6 @@ col_name <- function (x, default = stop("Please supply column name", call. = FAL
   stop("Invalid column specification", call. = FALSE)
 }
 
-#' Split a string column and then unnest on that split column
-#'
-#' @export
-split_unnest <- function(data, col, sep = "[^[:alnum:]]+") {
-  col <- col_name(substitute(col))
-  data[[col]] <- stringr::str_split(data[[col]], sep)
-
-  data <- tidyr::unnest_(data, col)
-  data <- data[data[[col]] != ""]
-  data
-}
-
 
 #' Melt multiple matrices of the same dimension into multiple columns
 #'
@@ -266,41 +254,6 @@ melt_multiple <- function(..., varnames = NULL, tbldf = TRUE) {
 
   if (tbldf) {
     ret <- dplyr::tbl_df(ret)
-  }
-
-  ret
-}
-
-
-#' Perform a correlation and melt the result into a table
-#'
-#' @param m A matrix or an object that can be coerced to one (like a
-#' sparseMatrix)
-#' @param use Passed on to \code{\link{cor}}
-#' @param method Passed on to \code{\link{cor}}
-#' @param varnames Names for variable columns, passed on to \code{reshape2::melt}
-#' @param varnames Name for value column, passed on to \code{reshape2::melt}
-#' @param threshold Optionally, a minimum threshold to include
-#' @param sort Whether to sort the results in descending correlation
-#'
-#' @export
-tidy_cor <- function(m, use = "everything", method = "pearson",
-                     varnames = c("Var1", "Var2"),
-                     value.name = "Correlation", threshold = NULL,
-                     sort = FALSE) {
-  co <- stats::cor(as.matrix(m), use = use, method = method)
-
-  ret <- reshape2::melt(co, varnames = varnames, value.name = value.name)
-  ret <- dplyr::tbl_df(ret)
-
-  # filter out self-matches
-  ret <- ret[ret[[varnames[1]]] != ret[[varnames[2]]], ]
-  if (!is.null(threshold)) {
-    ret <- ret[ret[[value.name]] >= threshold, ]
-  }
-
-  if (sort) {
-    ret <- ret[order(-ret[[value.name]]), ]
   }
 
   ret

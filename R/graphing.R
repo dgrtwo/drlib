@@ -16,7 +16,7 @@ rotate_x_labels <- function(...) {
 #'
 #' @export
 theme_blank <- function(...) {
-  ret <- theme_bw(...)
+  ret <- ggplot2::theme_bw(...)
   ret$line <- ggplot2::element_blank()
   ret$rect <- ggplot2::element_blank()
   ret$strip.text <- ggplot2::element_blank()
@@ -64,5 +64,5 @@ scale_y_percent <- function(...) {
 #' @rdname scale_percent
 #' @export
 scale_xy_percent <- function(...) {
-  list(ggplot2::scale_x_percent(...), ggplot2::scale_y_percent(...))
+  list(scale_x_percent(...), scale_y_percent(...))
 }

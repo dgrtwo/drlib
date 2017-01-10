@@ -7,13 +7,13 @@
 reorder_col(.data, col, value, ...)
 }
 \arguments{
+\item{.data}{A tbl}
+
 \item{col}{Column to use for reordering}
 
 \item{value}{Value to reorder by}
 
 \item{...}{Extra arguments passed on to reorder, such as \code{function}}
-
-\item{data}{A tbl}
 }
 \description{
 Reorder a column of a tbl based on another

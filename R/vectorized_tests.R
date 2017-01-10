@@ -41,10 +41,9 @@ vectorized_t_test = function(m, y, var.equal=FALSE, alternative="two.sided") {
 
   tstat <- (in.mu - out.mu) / stderr
 
-  PVAL <- switch(alternative, less=pt(tstat, df),
-                 greater=pt(tstat, df, lower.tail = FALSE),
-                 two.sided=2 * pt(-abs(tstat), df))
-
+  PVAL <- switch(alternative, less = stats::pt(tstat, df),
+                 greater = stats::pt(tstat, df, lower.tail = FALSE),
+                 two.sided = 2 * stats::pt(-abs(tstat), df))
 
   # name them, if the matrix has names
   names(PVAL) <- colnames(m)
@@ -90,10 +89,10 @@ vectorized_wilcoxon_test = function(m, y, alternative="two.sided", tbl = FALSE) 
   z <- (z - CORRECTION) / SIGMA
 
   PVAL <- switch(alternative,
-                 "less" = pnorm(z),
-                 "greater" = pnorm(z, lower.tail=FALSE),
-                 "two.sided" = 2 * pmin(pnorm(z),
-                                        pnorm(z, lower.tail=FALSE)))
+                 "less" = stats::pnorm(z),
+                 "greater" = stats::pnorm(z, lower.tail=FALSE),
+                 "two.sided" = 2 * pmin(stats::pnorm(z),
+                                        stats::pnorm(z, lower.tail=FALSE)))
 
   if (tbl) {
     # return as a tidy table
