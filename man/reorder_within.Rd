@@ -61,4 +61,3 @@ ggplot(iris_gathered, aes(reorder_within(Species, value, metric), value)) +
   facet_wrap(~ metric, scales = "free_x")
 
 }
-

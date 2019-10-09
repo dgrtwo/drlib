@@ -12,4 +12,3 @@ theme_blank(...)
 \description{
 Blank theme: used to come with ggplot2
 }
-

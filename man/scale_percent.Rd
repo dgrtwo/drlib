@@ -3,8 +3,8 @@
 \name{scale_percent}
 \alias{scale_percent}
 \alias{scale_x_percent}
-\alias{scale_xy_percent}
 \alias{scale_y_percent}
+\alias{scale_xy_percent}
 \title{Percentage scales}
 \usage{
 scale_x_percent(...)
@@ -19,4 +19,3 @@ scale_xy_percent(...)
 \description{
 Format the labels on the x axis, y axis, or both
 }
-

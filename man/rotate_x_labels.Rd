@@ -12,4 +12,3 @@ rotate_x_labels(...)
 \description{
 Rotate the labels on the x-axis of a graph
 }
-

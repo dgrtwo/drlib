@@ -19,4 +19,3 @@ or a numeric value to use}
 \description{
 Standard-evaluation version of sparse_cast
 }
-

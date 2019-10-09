@@ -18,4 +18,3 @@ add_counts(x)
 \description{
 Add counts in parentheses to a factor or character vector
 }
-

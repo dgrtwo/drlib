@@ -24,4 +24,3 @@ input <- c('{"col1": 3, "col2": 10}', '{"col1": 5}',
 json_vec_to_df(input)
 
 }
-

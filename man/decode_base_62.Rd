@@ -20,4 +20,3 @@ strings <- c("wojWiVquxXy", "x1VMNGRqI3m")
 decode_base_62(strings)
 
 }
-

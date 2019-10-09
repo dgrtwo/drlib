@@ -36,4 +36,3 @@ sparse_cast(dat, a, b)
 sparse_cast(dat, a, b, val)
 
 }
-

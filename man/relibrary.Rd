@@ -12,4 +12,3 @@ relibrary(package_name)
 \description{
 If the package is not already loaded, it still loads it
 }
-

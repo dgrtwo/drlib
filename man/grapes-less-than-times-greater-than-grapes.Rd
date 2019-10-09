@@ -19,4 +19,3 @@ This is a custom infix operator: %<*>% multiplies matrices, but first matches th
 column names of the first with the rows of the second. This works only if the first
 matrix has column names and the second has row names, so they can be matched.
 }
-

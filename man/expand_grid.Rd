@@ -19,4 +19,3 @@ Wrapper around \code{\link{expand.grid}} that returns a tbl_df instead of a
 data.frame, that allows grouping by all columns as an option, and that
 treats stringsAsFactors as FALSE by default.
 }
-

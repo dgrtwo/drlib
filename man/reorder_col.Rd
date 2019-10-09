@@ -18,4 +18,3 @@ reorder_col(.data, col, value, ...)
 \description{
 Reorder a column of a tbl based on another
 }
-

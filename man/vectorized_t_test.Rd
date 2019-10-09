@@ -21,4 +21,3 @@ vectorized_t_test(m, y, var.equal = FALSE, alternative = "two.sided")
 This function is similar to \code{apply(m, 2, function(col) t.test(y ~ col)$p.value)},
 but is vectorized to make it much faster
 }
-

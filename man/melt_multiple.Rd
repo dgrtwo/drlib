@@ -16,4 +16,3 @@ melt_multiple(..., varnames = NULL, tbldf = TRUE)
 \description{
 Melt multiple matrices of the same dimension into multiple columns
 }
-

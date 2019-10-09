@@ -15,4 +15,3 @@ If given a vector of country codes, turn into names. If given a vector
 of names, turn back into country codes. This is a very simple utility
 since I find myself using this code too often
 }
-

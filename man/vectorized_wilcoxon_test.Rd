@@ -19,4 +19,3 @@ vectorized_wilcoxon_test(m, y, alternative = "two.sided", tbl = FALSE)
 This function is similar to \code{apply(m, 2, function(col) wilcox.test(y ~ col)$p.value)},
 but is vectorized to make it much faster
 }
-

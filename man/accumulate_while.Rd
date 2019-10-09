@@ -39,4 +39,3 @@ accumulate_while(1, ~ . + 1, ~ . < 5)
 accumulate_while(1, ~ . / 2, ~ abs(.x - .y) > 1e-4, .compare = TRUE)
 
 }
-

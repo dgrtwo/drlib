@@ -12,4 +12,3 @@ scale_xy_log10(...)
 \description{
 Transform both the x and y axis for the common case of a log-log plot
 }
-
